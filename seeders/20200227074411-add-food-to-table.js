@@ -8,7 +8,7 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('Foods', 
+      return queryInterface.bulkInsert('Food', 
       [
         {
           name: 'Nasi Goreng',
@@ -52,6 +52,6 @@ module.exports = {
 
       Example:
       */
-     return queryInterface.bulkDelete('Foods', null, {});
+     return queryInterface.bulkDelete('Food', null, {});
   }
 };
