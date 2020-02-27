@@ -1,9 +1,9 @@
 <%- include('partials/header', { title: 'Home'}) %>
 <%- include('partials/navbar', { page: 'Home'}) %>
 
-<%#= JSON.stringify( food ) %>
-<div class="container mt-5">
-  <form action="/foods/order" method="POST">
+<%= JSON.stringify( food ) %>
+
+<div>
   <table class="table">
     <thead>
       <tr>
@@ -11,7 +11,7 @@
         <th scope="col">Stock</th>
         <th scope="col">Price</th>
         <th scope="col">Type</th>
-        <th scope="col">Quantity</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -23,13 +23,12 @@
         <% }%></td>
         <td><%= item.price %></td>
         <td><%= item.group %></td>
-        <td><input type="number" min="0" max="<%= item.stock %>" value="0" name="quantity"></td>
+        <td>
+         
       </tr>
      <% }) %>
     </tbody>
-
   </table>
-  <button type="submit" class="btn btn-block btn-success" onclick="confirm('Are you sure ? ')">Confirm Order</button>
-</form>
 </div>
+
 <%- include('partials/footer') %>
