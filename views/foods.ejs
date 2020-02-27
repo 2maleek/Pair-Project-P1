@@ -9,9 +9,11 @@
 
 
 body { 
-  background-image: url('https://static3.bigstockphoto.com/9/1/2/large1500/219336775.jpg');
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTL0EckSo3au8YH7iL9WxLv1sDxZRUZ3Pp-aRmT-IU8ai8US_n');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  height: 100%;
 }
 
 </style>
@@ -49,7 +51,7 @@ body {
   <% food.forEach(item => { %>
     <div class="row mt-5">
       <div class="col">
-        <div class="card" style="width: 50%;">
+        <div class="card" style="width: 50%; opacity: 0.8">
          <img src="https://www.seriouseats.com/2019/06/20190604-nasi-goreng-fried-rice-vicky-wasik-7-1500x1125.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title"><%= item.name %></h5>
