@@ -12,19 +12,28 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <% JSON.stringify(session) %>
+      <% if(!session) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/foods">Foods</a>
+      </li>
+      
+      <li>
+        <a class="nav-link" href="/foods %>">Cart</a>
+      </li>
+      <% } else {%>
       <li class="nav-item">
         <a class="nav-link" href="/foods/<%= session.id %>">Foods</a>
       </li>
-
+      
       <li>
         <a class="nav-link" href="/foods/cart/<%= session.id %>">Cart</a>
       </li>
-
+      <% } %>
     </ul>
     
     <!-- Ntar kalo udah selesai session pakein logic kalo udah login ganti jadi tombol logout setiap manggil navbar kirim data session -->
+    
     <% if(!session) { %>
-
       <form action="/login" method="POST" class="form-inline my-2 my-lg-0">
         <label for="" class="mr-3"> Want to Order ?... Login First</label>
         <input class="form-control mr-sm-2" type="text" placeholder="username" name="username">
