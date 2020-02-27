@@ -3,7 +3,7 @@ const ModelUser = require(`../models`).User
 class LoginController {
 
     static show (req, res) {
-        res.send(`ini login page`)
+        res.render(`login`)
     }
 
     static doLogin (req, res) {
@@ -15,12 +15,13 @@ class LoginController {
         .then(data => {
             if (data.length > 0) {
                 req.session.user = {
-                    username:user.username,
-                    role:user.role
+                    username:data[0].username,
+                    role:data[0].role,
+                    name:data[0].first_name
                 }
-                next()
+                res.redirect(`/foods`)
             } else {
-                res.send(`invalid password`)
+                res.send(`invalid username / password`)
             }
         })
         .catch(err => {
