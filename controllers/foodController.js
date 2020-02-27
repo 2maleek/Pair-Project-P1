@@ -69,6 +69,67 @@ class FoodController {
             res.send(err)
         })
     }
+
+    static adminAdd (req, res) {
+        // res.send(`CROT`)
+        res.render(`addFoodForm`)
+    }
+
+    static addFood (req, res) {
+        let obj = {
+            name: req.body.name,
+            stock: req.body.stock,
+            price: req.body.price,
+            group: req.body.group
+        }
+
+        ModelFood.create(obj)
+        .then(data => {
+            res.redirect(`/user/admin`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static delete (req, res) {
+        // res.send(req.params.foodId)
+        let foodId = req.params.foodId
+        ModelFood.destroy({where:{id:foodId}})
+        .then(data => {
+            res.redirect(`/user/admin`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static editForm (req, res) {
+        let foodId = req.params.foodId
+        ModelFood.findByPk(foodId)
+        .then(data => {
+            res.render(`editForm`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static edit (req, res) {
+        let obj = {
+            name: req.params.name,
+            stock: req.params.stock,
+            price: req.params.price,
+            group: req.params.group
+        }
+        ModelFood.update(obj)
+        .then(data => {
+            res.redirect(`/user/admin`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
 }
 
 module.exports = FoodController

@@ -38,8 +38,11 @@ class LoginController {
                     name:data[0].first_name,
                     id:data[0].id
                 }
-                // res.send(req.session.user)
-                res.redirect(`/foods/${req.session.user.id}`)
+                if (req.session.user.role == `user`) {
+                    res.redirect(`/foods/${req.session.user.id}`)
+                } else {
+                    res.redirect(`/user/admin`)
+                }
             } else {
                 res.send(`invalid username / password`)
             }

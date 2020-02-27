@@ -1,4 +1,5 @@
 const ModelUser = require (`../models`).User
+const ModelFood = require (`../models`).Food
 
 class UserController {
 
@@ -19,6 +20,16 @@ class UserController {
         ModelUser.create(obj)
         .then(data => {
             res.redirect(`/login`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static adminPage (req, res) {
+        ModelFood.findAll()
+        .then(food => {
+            res.render(`adminPage`, { food, session:req.session.user })
         })
         .catch(err => {
             res.send(err)

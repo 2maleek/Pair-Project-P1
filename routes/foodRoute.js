@@ -9,6 +9,11 @@ route.use((req, res, next) => {
         res.redirect(`/login`)
     }
 })
+route.get(`/add`, foodController.adminAdd)
+route.post(`/add`, foodController.addFood)
+route.get(`/delete/:foodId`, foodController.delete)
+route.get(`/edit/:foodId`, foodController.editForm)
+route.post(`/edit/:foodId`, foodController.edit)
 route.get(`/:id`, foodController.show)
 route.post(`/order/:id`, foodController.add)
 route.get(`/cart/:id`, foodController.showCart)
