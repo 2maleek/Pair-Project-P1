@@ -11,13 +11,13 @@
       <li class="nav-item <%= page === 'Home' ? 'active' : '' %> ">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-
+      <% JSON.stringify(session) %>
       <li class="nav-item">
-        <a class="nav-link" href="/foods">Foods</a>
+        <a class="nav-link" href="/foods/<%= session.id %>">Foods</a>
       </li>
 
       <li>
-        <a class="nav-link" href="/foods/cart">Cart</a>
+        <a class="nav-link" href="/foods/cart/<%= session.id %>">Cart</a>
       </li>
 
     </ul>

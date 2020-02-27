@@ -1,6 +1,8 @@
 const ModelFood = require(`../models`).Food
 const ModelTransaction = require(`../models`).Transaction
 const ModelUser = require(`../models`).User
+const calculate = require(`../helper/calculateTotal`)
+const convert = require(`../helper/convert`)
 
 class FoodController {
 
@@ -8,7 +10,7 @@ class FoodController {
         let session = req.session.user
         ModelFood.findAll()
         .then(food => {
-            res.render('foods', { food, session:req.session.user })
+            res.render('foods', { food, session })
         })
         .catch(err => {
             res.send(err)
@@ -61,7 +63,7 @@ class FoodController {
         let session = req.session.user
         ModelUser.findOne({where:{id:userId}, include: ModelFood})
         .then(data => {
-            res.render('cart', { data, session:req.session.user })
+            res.render('cart', { data, session,calculate, convert })
         })
         .catch(err => {
             res.send(err)
