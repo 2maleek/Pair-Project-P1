@@ -2,6 +2,7 @@
 <%- include('partials/navbar', { page: 'Home'}) %>
 
 <%#= JSON.stringify( food ) %>
+<% food.sort((a,b)=> a.id-b.id) %>
 <div class="container mt-5">
   <form action="/foods/order" method="POST">
   <table class="table">
@@ -17,8 +18,9 @@
     <tbody>
      <% food.forEach(item => { %>
       <tr>
+        <input type="hidden" name="id" value="<%= item.id %>">
         <td><%= item.name %></td>
-        <td><%= item.stock %><% if(item.stock <= 10) { %>
+        <td><%= item.stock %><% if(item.stock <= 5) { %>
           <small id="emailHelp" class="form-text  text-danger">* Almost out of stock</small>
         <% }%></td>
         <td><%= item.price %></td>
