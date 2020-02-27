@@ -5,6 +5,7 @@ const transaction = require(`../routes/transactionRoute`)
 
 route.get('/', (req, res) => {
     res.send('HOMEPAGE')
+    // res.render('home')
 })
 
 route.use(`/foods`, food)
