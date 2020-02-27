@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <a class="navbar-brand" href="#">Brand</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,9 +17,16 @@
 
     </ul>
     
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <!-- Ntar kalo udah selesai session pakein logic kalo udah login ganti jadi tombol logout setiap manggil navbar kirim data session -->
+    <form action="/login" method="POST" class="form-inline my-2 my-lg-0">
+      <label for="" class="mr-3"> Want to Order ?... Login First</label>
+      <input class="form-control mr-sm-2" type="text" placeholder="username" name="username">
+      <input class="form-control mr-sm-2" type="password" placeholder="password" name="password">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+      <label for="" class="mr-3 ml-3"> OR </label>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Register</button>
     </form>
+    <!-- ini dimunculin ntar pas udah login -->
+    <!-- <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button> -->
   </div>
 </nav>
