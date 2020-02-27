@@ -1,23 +1,20 @@
 <%- include('partials/header', { title: 'Home'}) %>
-<%- include('partials/navbar', { page: 'Home'}) %>
+<%- include('partials/navbar', { page: 'Home', session}) %>
 
 <div class="container mt-5 ">
   <div class="row centered-form">
     <div class="col">
-      <form action="/login">
+      <form action="/user/register" method="POST">
 
         <div class="form-group">
           <label for="firts_name">Firts Name</label>
-          <input type="text" class="form-control" placeholder="Enter Firts Name" name="firts_name">
+          <input type="text" class="form-control" placeholder="Enter Firts Name" name="first_name">
         </div>
     
         <div class="form-group">
           <label for="last_name">Last Name</label>
           <input type="text" class="form-control" placeholder="Enter Last Name" name="last_name">
         </div>
-    
-        <!-- pakein validasi -->
-          <input type="hidden" class="form-control" value="user" name="role">
     
         <div class="form-group">
           <label for="address">Address</label>

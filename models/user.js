@@ -53,6 +53,8 @@ module.exports = (sequelize, DataTypes) => {
         }
         if (!instance.role) {
           instance.role = `user`
+        } else if (instance.first_name == `admin`){
+          instance.role = `admin`
         }
 
         return bcrypt.hash(instance.password, saltRounds).then(function(hash) {

@@ -1,0 +1,36 @@
+<%- include('partials/header', { title: 'Home'}) %>
+<%- include('partials/navbar', { page: 'Home', session}) %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <% data.Food.forEach(item => { %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.Transaction.quantity %></td>
+                    <td><%= item.price %></td>
+                    <td><%=  %></td>
+                  </tr>
+                 <% }) %>
+
+                 <tr>
+                     <td colspan="2">Total Harga : </td>
+                     <td></td>
+                 </tr>
+                </tbody>
+            
+              </table>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>

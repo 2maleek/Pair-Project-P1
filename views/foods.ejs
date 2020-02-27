@@ -1,10 +1,16 @@
 <%- include('partials/header', { title: 'Home'}) %>
-<%- include('partials/navbar', { page: 'Home'}) %>
-
+<%- include('partials/navbar', { page: 'Home', session}) %>
+<style>
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+</style>
 
 <% food.sort((a,b)=> a.id-b.id) %>
 <div class="container mt-5">
-  <form action="/foods/order" method="POST">
+  <form action="/foods/order/<%= session.id %>" method="POST">
   <table class="table">
     <thead>
       <tr>
@@ -32,6 +38,27 @@
 
   </table>
   <button type="submit" class="btn btn-block btn-success" onclick="confirm('Are you sure ? ')">Confirm Order</button>
+  <!-- <% food.forEach(item => { %>
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 75%;">
+         <img src="https://www.seriouseats.com/2019/06/20190604-nasi-goreng-fried-rice-vicky-wasik-7-1500x1125.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text">Get delicious <%= item.name %> Now!</p>
+              <h4 class="">Stok : <%= item.stock %></h4>
+              <strong
+              ><%= item.stock %><% if(item.stock <= 5) { %>
+                <small id="emailHelp" class="form-text  text-danger">* Almost out of stock</small>
+              <% }%>
+              </strong>
+      
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+           </div>
+         </div>
+      </div>    
+    </div>
+  <% }) %> -->
 </form>
 
 </div>

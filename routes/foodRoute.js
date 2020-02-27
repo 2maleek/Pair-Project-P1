@@ -9,7 +9,8 @@ route.use((req, res, next) => {
         res.redirect(`/login`)
     }
 })
-route.get(`/`, foodController.show)
-route.post(`/order`, foodController.add)
+route.get(`/:id`, foodController.show)
+route.post(`/order/:id`, foodController.add)
+route.get(`/cart/:id`, foodController.showCart)
 
 module.exports = route

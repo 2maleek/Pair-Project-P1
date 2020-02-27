@@ -1,4 +1,6 @@
 const ModelUser = require(`../models`).User
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 class LoginController {
 
@@ -7,19 +9,37 @@ class LoginController {
     }
 
     static doLogin (req, res) {
+        let user_id = null
         let user = {
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
         }
-        ModelUser.findAll({where:user})
+        let hashed = null
+        ModelUser.findOne({where:{username:user.username}})
         .then(data => {
+            hashed = data.password
+            user_id = data.id
+            return bcrypt.compare(user.password, data.password)
+        })
+        .then((result) => {
+            if (result) {
+                user.password = hashed
+                return ModelUser.findAll({where:user})
+            } else {
+                res.send(`invalid username / password`)
+            }
+        })
+        .then(data => {
+            // res.send(data)
             if (data.length > 0) {
                 req.session.user = {
                     username:data[0].username,
                     role:data[0].role,
-                    name:data[0].first_name
+                    name:data[0].first_name,
+                    id:data[0].id
                 }
-                res.redirect(`/foods`)
+                // res.send(req.session.user)
+                res.redirect(`/foods/${req.session.user.id}`)
             } else {
                 res.send(`invalid username / password`)
             }
