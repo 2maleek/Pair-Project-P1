@@ -3,10 +3,11 @@ const ModelFood = require(`../models`).Food
 class FoodController {
 
     static show (req, res) {
-        
+        let session = req.session.user
+        // res.send(session)
         ModelFood.findAll()
         .then(food => {
-            res.render('home', { food })
+            res.render('foods', { food, session })
             // res.send(food)
         })
         .catch(err => {

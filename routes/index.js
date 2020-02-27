@@ -5,8 +5,7 @@ const transaction = require(`../routes/transactionRoute`)
 const login = require(`../routes/loginRoute`)
 
 route.get('/', (req, res) => {
-    res.send('HOMEPAGE')
-    // res.render('home')
+    res.render('home', { session: req.session.user})
 })
 
 route.use(`/foods`, food)

@@ -3,7 +3,7 @@ const ModelUser = require(`../models`).User
 class LoginController {
 
     static show (req, res) {
-        res.render(`login`)
+        res.render(`login`, {session: req.session.user})
     }
 
     static doLogin (req, res) {

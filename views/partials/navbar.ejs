@@ -8,32 +8,38 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item <%= page === 'Home' ? 'active' : '' %> ">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="/foods">Foods</a>
+      </li>
+
+      <li>
+        <a class="nav-link" href="/foods/cart">Cart</a>
       </li>
 
     </ul>
     
     <!-- Ntar kalo udah selesai session pakein logic kalo udah login ganti jadi tombol logout setiap manggil navbar kirim data session -->
-    <form action="/login" method="POST" class="form-inline my-2 my-lg-0">
-      <label for="" class="mr-3"> Want to Order ?... Login First</label>
-      <input class="form-control mr-sm-2" type="text" placeholder="username" name="username">
-      <input class="form-control mr-sm-2" type="password" placeholder="password" name="password">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-      <label for="" class="mr-3 ml-3"> OR </label>
-      <a href="/user/register">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Register</button>
-      </a>
+    <% if(!session) { %>
+
+      <form action="/login" method="POST" class="form-inline my-2 my-lg-0">
+        <label for="" class="mr-3"> Want to Order ?... Login First</label>
+        <input class="form-control mr-sm-2" type="text" placeholder="username" name="username">
+        <input class="form-control mr-sm-2" type="password" placeholder="password" name="password">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+        <label for="" class="mr-3 ml-3"> OR </label>
+        <a href="/user/register">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Register</button>
+        </a>
+        
+    <% }else{ %>
       <a href="/login/out">
         <button class="btn btn-outline-danger my-2 my-sm-0" type="button">Logout</button>
       </a>
-    </form>
-    <!-- ini dimunculin ntar pas udah login -->
-    <!-- <%# if(req.session.user) { %>
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
-    <%# } %> -->
-  </div>
-</nav>
+
+    <% } %>
+      </form>
+      </div>
+    </nav>
