@@ -1,4 +1,7 @@
 'use strict';
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
   class User extends Model{}
@@ -51,6 +54,10 @@ module.exports = (sequelize, DataTypes) => {
         if (!instance.role) {
           instance.role = `user`
         }
+
+        return bcrypt.hash(instance.password, saltRounds).then(function(hash) {
+          instance.password = hash
+      });
       }
     },sequelize})
   
