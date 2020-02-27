@@ -108,7 +108,7 @@ class FoodController {
         let foodId = req.params.foodId
         ModelFood.findByPk(foodId)
         .then(data => {
-            res.render(`editForm`)
+            res.render(`editForm`, { data })
         })
         .catch(err => {
             res.send(err)
@@ -116,13 +116,15 @@ class FoodController {
     }
 
     static edit (req, res) {
+        let id = req.params.foodId
         let obj = {
-            name: req.params.name,
-            stock: req.params.stock,
-            price: req.params.price,
-            group: req.params.group
+            name: req.body.name,
+            stock: req.body.stock,
+            price: req.body.price,
+            group: req.body.group
         }
-        ModelFood.update(obj)
+        // res.send(obj)
+        ModelFood.update(obj, {where:{id:id}})
         .then(data => {
             res.redirect(`/user/admin`)
         })
